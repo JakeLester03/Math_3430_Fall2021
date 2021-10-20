@@ -93,12 +93,18 @@ def matrix_vector_mult(matrix:list[float], vector:list[float])->list[float]:
 
 #5 Matrix-Matrix Multiplication
 '''
-PSEUDO CODE AWAITING DOC STRING (ran out of time, had to switch to a new IDE since I ran into issues with spyder. Will come back
-to finish).
-def matrix_matrix_mult(matrix_a, matrix_b):
-    Initailize result of matrix_b as an empty list
-    for index in matrix_b:
-        result.append(matrix_vector_mult(matrix_a, matrix_b[index]))
+Used to find the multiplication of two matricies. Both matricies stored as lists of column vectors.
+Initialize result as an empty list. By indexing though the columns in matrix_b we can calculate product of the 
+two matricies by using the linear combination method 
+by appending matrix_vector_mult, which will multiply by the coumns in matrix_a, to the result.
+
+Args: 
+    matrix_a: a list of column vectors stored as lists
+    matrix_b: another matrix stored as a list fof column vectors. The number of columns of matrix_a will be equal to the number of
+    rows matrix_b has.
+
+Returns: 
+    The product of the two matricies.
 '''
 def matrix_matrix_mult(matrix_a:list[float], matrix_b:list[float])->list[float]:
     result:list[float] = []
