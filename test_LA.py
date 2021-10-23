@@ -66,3 +66,49 @@ def test_matrix_matrix_mult():
 ## matrix_ζ * matrix_Ω: [[1*10],[2*10] + [2*20, 1*20]. [1*30,2*30]+[2*40, 1*40]] = [[50,40], [110, 100]]
     assert LA.matrix_matrix_mult(matrix_Δ, matrix_θ) == [[300,400,600], [300,400,600], [300,400,600]]
     assert LA.matrix_matrix_mult(matrix_ζ, matrix_Ω) == [[50,40], [110, 100]]
+
+#### HW 04 TESTS ####
+def test_absolute_value():
+    scalar_a = -5
+    scalar_b = 3-4j
+## absolute_value(-5) = 5
+## absolute_value(3-4j) = 5
+    assert LA.absolute_value(scalar_a) == 5
+    assert LA.absolute_value(scalar_b) == 5.0
+
+def test_p_norm():
+    vector_1 = [1,2,3-4j]
+    vector_2 = [1,2,3]
+## p_norm(vector_1) = 5.477225575051661
+## p_norm(vector_2) = 3.7416573867739413
+    assert LA.p_norm(vector_1) == 5.477225575051661
+    assert LA.p_norm(vector_2) == 3.7416573867739413
+
+def test_infinity_norm():
+    vector_3 = [1,2,3]
+    vector_4 = [1,100,2]
+## infinity_norm(vector_3) = 3
+## infinity norm_(vector_4) = 100
+    assert LA.infinity_norm(vector_3) == 3
+    assert LA.infinity_norm(vector_4) == 100
+
+def test_boolean_norm():
+    vector_5 = [1,2,3]
+    vector_6 = [3,2,1]
+## boolean_norm(vector_5, 2, True) = 3
+## boolean_norm(vector_6, 2, True) = 3
+## boolean_norm(vector_5, 2, False) = 3.7416573867739413
+    assert LA.boolean_norm(vector_5, 2, True) == 3
+    assert LA.boolean_norm(vector_6, 2, True) == 3
+    assert LA.boolean_norm(vector_5, 2, False) == 3.7416573867739413
+
+def test_inner_product():
+    vector_7 = [1+2j, 2-2j]
+    vector_8 = [2+1j,3]
+    vector_9 = [1,2,3]
+    vector_10 = [1,2,5]
+## inner_product(vector_7, vector_8) = (6-1j)
+## inner_product(vector_9, vector_10) = 20
+    assert LA.inner_product(vector_7, vector_8) == (6-1j)
+    assert LA.inner_product(vector_9, vector_10) == 20
+
