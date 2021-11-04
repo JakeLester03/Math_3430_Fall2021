@@ -20,7 +20,7 @@ Returns:
   return result  
 
 
-#1 Salar-Vector Mult
+#1 Scalar-Vector Mult
 
 def scalar_vector_mult(scalar:float, vector:list[float])->list[float]:
 """
@@ -38,7 +38,7 @@ Returns:
         result[index]=vector[index] * scalar
     return result
 
-#2 Scalar Matrix Multiplication
+#2 Scalar-Matrix Multiplication
 
 def scalar_matrix_mult(matrix_a:list[float], scalar: float)->list[float]:
 '''
@@ -219,7 +219,5 @@ Result:
     for index in range(len(vector_a)):
         result[index]=vector_a[index] * vector_b[index]
     return sum(result)
-vector_f = [2+1j, 3]
-print(inner_product(vector_e, vector_f))
-#(6-1j)
+
 '''
