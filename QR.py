@@ -2,7 +2,13 @@ import LA
 
 def GramSchmidt_unstable(matrix: list) -> list:
     '''
-    
+    The unstable version of Gram-schmidt factorization. First we create an empty list for Q, V, and R. We want to build R as a square matrix 
+    so that we can return it along with Q. Let V be a matrix  the same size as A and essentially a copy. We will start a for loop to indexing 
+    over the matrix, then append that onto V. Then we will star another for loop to iterate over the columns so that R can be overwritten; this
+     will allow us to build an upper triangular matrix. Then we can multiply the rows of Q and columns of V using inner_produt to over write R.
+     V is overwritten with R, and then we subtract off the product of R and Q using add vectors and scalar_vector_mult. We will then take the p-norm
+     of the columns to be stored in R. Finally, we will normalize V and multiply by R using scalar_vector_mult; we append this to Q to get the 
+     orthogonal matrix. 
 
 Args:
     A Matrix which will satisfy A = Q * R
@@ -24,12 +30,7 @@ Results:
             V[outer_index] = LA.add_vectors(V[outer_index], LA.scalar_vector_mult(-R[outer_index][inner_index], Q[inner_index]))
         R[outer_index][outer_index] = LA.p_norm(V[outer_index])
         Q.append(LA.scalar_vector_mult(1/R[outer_index][outer_index], V[outer_index]))
-       
     return [Q, R]
-
-#matrix = [[-1,10,1],[2,2,10],[3,-4,3]]
-#matrix =[[1,2,3],[4,2,-4],[12,0,0]]
-#print(GramSchmidt_unstable(matrix))
 
 def GramSchmidt_stable(matrix: list) -> list:
     '''
@@ -61,6 +62,6 @@ Result:
         for inner_index in range(outer_index, len(matrix)):
             R[inner_index][outer_index] = LA.inner_product(Q[outer_index], V[inner_index])
             V[inner_index] = LA.add_vectors(V[inner_index], LA.scalar_vector_mult(-R[inner_index][outer_index], Q[outer_index]))
-    return [Q,R]
+    return [Q, R]
 
 
