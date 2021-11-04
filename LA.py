@@ -22,7 +22,7 @@ Returns:
 
 #1 Salar-Vector Mult
 
-def scalar_vector_mult(vector:list[float], scalar:float)->list[float]:
+def scalar_vector_mult(scalar:float, vector:list[float])->list[float]:
 """
     Multiplys a vector by a scalar. Creates a result vector stored as a list of 0's the same size of the input vector. Then we overwrite 
     the elements with the corresponding result of the vector element scaled by the scalar. We can achieve this by using a for loop to toggle
