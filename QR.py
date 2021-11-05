@@ -32,4 +32,18 @@ Result:
             V[inner_index] = LA.add_vectors(V[inner_index], LA.scalar_vector_mult(-R[inner_index][outer_index], Q[outer_index]))
     return [Q, R]
 
+def orthonormal_vectors(matrix: list) -> list:
+    '''
+    Takes an input list of vectors and returns the orthonormal list of vectors sharing the same span. In our Stable Gram-Schmidt
+    algorithm, we return two matricies. An orthogonal Q and Upper triangular R. Likewise, Q is also foud to be orthonormal. Therefore,
+    we can use the Gram-Schmidt algortihm and return the first element Q.
+
+Args:
+    A list of vectors (i.e matrix).
+
+Returns:
+    An orthonormal list of vectors sharing the same span.
+    '''
+    return GramSchmidt_stable(matrix)[0]
+
 
