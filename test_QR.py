@@ -11,4 +11,6 @@ def test_GramSchmidt_stable():
     
 def test_orthonormal_vectors():
   matrix_c = [[1,1,1,1],[3,2,3,2],[6,2,8,4]]
+  matrix_e = [[0,-1], [1,2]]
   assert QR.orthonormal_vectors(matrix_c) == ([[0.5, 0.5, 0.5, 0.5], [0.5, -0.5, 0.5, -0.5], [-0.5, -0.5, 0.5, 0.5]])
+  assert QR.orthonormal_vectors(matrix_e) ==([[0.0, -1.0], [1.0, 0.0]])
