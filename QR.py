@@ -1,6 +1,6 @@
 import LA
 
-def GramSchmidt_stable(matrix: list) -> list:
+def GramSchmidt(matrix: list) -> list:
     '''
     The stable version of Gram-Schmidt QR factorization. First we create an empty list for Q, V, and R. We want to build R as a square matrix 
     so that we can return it along with Q. Let V be a matrix  the same size as A. We can then begin by adding on each element of the matrix onto 
@@ -44,6 +44,6 @@ Args:
 Returns:
     An orthonormal list of vectors sharing the same span.
     '''
-    return GramSchmidt_stable(matrix)[0]
+    return GramSchmidt(matrix)[0]
 
 
