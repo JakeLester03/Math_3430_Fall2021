@@ -26,10 +26,10 @@ Result:
         R.append([0 for element in range(len(matrix))])
     for outer_index in range(len(matrix)):
         R[outer_index][outer_index] = LA.p_norm(V[outer_index])
-        Q.append(LA.scalar_vector_mult(1/R[outer_index][outer_index], V[outer_index]))
+        Q.append(LA.scalar_vector_mult(V[outer_index], 1/R[outer_index][outer_index]))
         for inner_index in range(outer_index, len(matrix)):
             R[inner_index][outer_index] = LA.inner_product(Q[outer_index], V[inner_index])
-            V[inner_index] = LA.add_vectors(V[inner_index], LA.scalar_vector_mult(-R[inner_index][outer_index], Q[outer_index]))
+            V[inner_index] = LA.add_vectors(V[inner_index], LA.scalar_vector_mult(Q[outer_index], -R[inner_index][outer_index]))
     return [Q, R]
 
 def orthonormal_vectors(matrix: list) -> list:
