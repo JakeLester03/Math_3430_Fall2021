@@ -137,19 +137,20 @@ def vector_vector_mult(vector:list, vector_b:list)-> list:
 def F_builder(vector:list)-> list:
     '''
     Returns F_k found by the equation F_k = I - 2(vv*/v*v). We can set an arbirtary scalar, x, equal to 2 divided by the norm of v squared. Then
-    multiply the vectors, using vector_vector_mult and multiply by x using scalar_vector_mult and set equal to y. Finally, using matrix_add, subtract
-    y from the identity matrix by using matric_add.
+    multiply the vectors, using vector_vector_mult and multiply by -x using scalar_vector_mult and set equal to y so y will now be negative. Finally, 
+    using matrix_add, subtract y (add minus y) from the identity matrix by using matrix_add.
 Args:
     a vector stored as a list of lists
 
 Returns:
     the F_k value needed for Q_k.
     '''
-    
     x = 2/(LA.boolean_norm(vector))**2
-    y = LA.scalar_vector_mult(#vector_vectormult(vector, vector_02), x)
-    z = LA.matrix_add(Identity(len(vector)), -y)
+    y = LA.scalar_matrix_mult(vector_vector_mult(vector, vector), -x) 
+    z = LA.matrix_add(Identity(len(vector)), y)
     return z
+    
+  
  
 '''
 def Q_builder(matrix: list) -> list:
