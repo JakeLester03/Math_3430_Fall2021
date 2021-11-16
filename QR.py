@@ -45,7 +45,7 @@ Returns:
     An orthonormal list of vectors sharing the same span.
     '''
     return GramSchmidt(matrix)[0]
-##
+##HW07
 def Identity(n: int)-> int:
     '''
     Builds an identity matrix of nxn size.
@@ -59,13 +59,20 @@ def Identity(n: int)-> int:
 
     '''
     result:list =[[0 for element in range(n)] for index in range(n)]
-    for i in range(n):
-        result[i][i] = 1
+    for index in range(n):
+        result[index][index] = 1
     return result
 
-print(Identity(1))
+#print(Identity(1))
 
 def sign(n:float)-> float:
+    '''
+    Determines whether a number is positive or negative. If less than 0, returns -1. If greater than 0, returns 1.
+Args:
+    an integer n
+Returns:
+    -1 or 1.
+    '''
     if n < 0:
         return -1
     else:
@@ -81,46 +88,73 @@ Result:
     '''
     result = scalar.real + -scalar.imag*1j
     return result
-scalar=2
+#scalar=2
 #print(complex_conjugate(scalar))
 
-
-
-
 '''
-def Q_builder
+def conjugate_transpose(matrix: list) -> list:
+    
+    
+Args: 
+    A matrix stored as a list.
 
-#Doc String
+Result:
+    The conjugated transpose of the matrix    
+    
 '''
-
 
 def F_builder(vector:list)-> list:
     '''
-    Returns F_k
+    Returns F_k found by the equation F_k = I - 2(vv*/v*v). We can set an arbirtary scalar, x, equal to 2 divided by the norm of v squared. Then
+    multiply the vectors, using vector_vector_mult and multiply by x using scalar_vector_mult and set equal to y. Finally, using matrix_add, subtract
+    y from the identity matrix by using matric_add.
 Args:
-    a vector stored as a list.
+    a vector stored as a list of lists
+
 Returns:
     the F_k value needed for Q_k.
     '''
     
     x = 2/(LA.boolean_norm(vector))**2
-    y = LA.scalar_vector_mult(#vector_vectormult(vect1, vec2), x)
-    z = LA.matrix_add(Identity(len(vector)), y)
+    y = LA.scalar_vector_mult(#vector_vectormult(vector, vector_02), x)
+    z = LA.matrix_add(Identity(len(vector)), -y)
     return z
+ 
+'''
+def Q_builder(matrix: list) -> list:
+
+#Doc String
+
+Args:
+    a matrix stored as a list of lists.
+
+Returns:
+    Q_k of the form [[I_k-1, 0], [0, F_k]]
+
+'''
 
 
 
 def Householder(matrix: list[list]) -> list[list]:
-    #doc strng
+    '''
+    Perfroms the householder decomposistion on a matrix.
+
+Args:
+    a matrix stored as a list of lists.
+    
+Returns:
+    an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method
+    
     R: list = deep_copy(A)
     Q_list: list = []
 for index in range(len(R)):
-    Q_temp: list= Q_builder(R, index)
+    Q_temp: list = Q_builder(R, index)
     A = La.matrix_mult(Q_temp, R)
     Q_list.append(Q_temp)
+Q: list = Q_list[-1]
 Q: list = conjugate_transpose(Q_list[0])
-for index in range(len(1, len(Q_list))
-    Q = La.mat_mult(Q, conjugate_transpose(Q_list[index])
+for index in range(len(1, len(Q_list)):
+    Q = La.matrix_mult(Q, conjugate_transpose(Q_list[index])
 return [Q, R]
 
 write Q builder
