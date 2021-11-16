@@ -72,6 +72,13 @@ def sign(n:float)-> float:
         return 1
 
 def complex_conjugate(scalar:float)-> float:
+    '''
+    Find the conjugate of a complex scalar by reversing the sign (+ or -) of the imaginary part. The real is left unaffected.
+Args:
+    A complex scalar consisting of a real part and an imaginary part.
+Result:
+    The conjugated scalar with the sign reversed of the imaginary.
+    '''
     result = scalar.real + -scalar.imag*1j
     return result
 scalar=2
@@ -84,12 +91,16 @@ scalar=2
 def Q_builder
 
 #Doc String
- 
+'''
 
 
 def F_builder(vector:list)-> list:
     '''
-    Return F_k
+    Returns F_k
+Args:
+    a vector stored as a list.
+Returns:
+    the F_k value needed for householder decomposistion.
     '''
     
     x = 2/(LA.boolean_norm(vector))**2
@@ -115,6 +126,6 @@ return [Q, R]
 write Q builder
 write conjugate transpose
 write deep copy
-'''
+
 
 
