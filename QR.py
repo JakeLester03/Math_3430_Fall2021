@@ -45,5 +45,76 @@ Returns:
     An orthonormal list of vectors sharing the same span.
     '''
     return GramSchmidt(matrix)[0]
+##
+def Identity(n: int)-> int:
+    '''
+    Builds an identity matrix of nxn size.
+
+    Args:
+        An integer n which denotes the size of the square identity matrix.
+    
+    Result:
+        An nxn Identity matrix
+    
+
+    '''
+    result:list =[[0 for element in range(n)] for index in range(n)]
+    for i in range(n):
+        result[i][i] = 1
+    return result
+
+print(Identity(1))
+
+def sign(n:float)-> float:
+    if n < 0:
+        return -1
+    else:
+        return 1
+
+def complex_conjugate(scalar:float)-> float:
+    result = scalar.real + -scalar.imag*1j
+    return result
+scalar=2
+#print(complex_conjugate(scalar))
+
+
+
+
+'''
+def Q_builder
+
+#Doc String
+ 
+
+
+def F_builder(vector:list)-> list:
+    '''
+    Return F_k
+    '''
+    
+    x = 2/(LA.boolean_norm(vector))**2
+    y = LA.scalar_vector_mult(#vector_vectormult(vect1, vec2), x)
+    z = LA.matrix_add(Identity(len(vector)), y)
+    return z
+
+
+
+def Householder(matrix: list[list]) -> list[list]:
+    #doc strng
+    R: list = deep_copy(A)
+    Q_list: list = []
+for index in range(len(R)):
+    Q_temp: list= Q_builder(R, index)
+    A = La.matrix_mult(Q_temp, R)
+    Q_list.append(Q_temp)
+Q: list = conjugate_transpose(Q_list[0])
+for index in range(len(1, len(Q_list))
+    Q = La.mat_mult(Q, conjugate_transpose(Q_list[index])
+return [Q, R]
+
+write Q builder
+write conjugate transpose
+write deep copy
+'''
 
 
