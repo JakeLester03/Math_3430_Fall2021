@@ -77,6 +77,25 @@ Returns:
         return -1
     else:
         return 1
+def v_reflection(vector: list)-> list:
+    '''
+    Find the reflection V where V satisfies the equation V = sign(x)||x||e + x
+    
+Args:
+    a vector stored as a list.
+    
+Returs:
+    the reflection vector V.
+    
+    '''
+    e = [0 for element in range(len(vector))]
+    e[0] = 1
+    V = LA.add_vectors(LA.scalar_vector_mult(e, sign(vector[0])*LA.boolean_norm(vector)), vector)
+    return V
+
+#vector_a= [1,2,3,4]
+#print(v_reflection(vector_a))
+
 
 def complex_conjugate(scalar:float)-> float:
     '''
