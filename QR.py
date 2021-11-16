@@ -77,6 +77,7 @@ Returns:
         return -1
     else:
         return 1
+    
 def v_reflection(vector: list)-> list:
     '''
     Find the reflection V where V satisfies the equation V = sign(x)||x||e + x
