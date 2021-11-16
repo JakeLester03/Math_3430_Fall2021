@@ -123,6 +123,17 @@ Result:
     
 '''
 
+def vector_vector_mult(vector:list, vector_b:list)-> list:
+    result: list = []
+    for index in range(len(vector)):
+        result.append(LA.scalar_vector_mult(vector_b, vector[index]))
+    return result
+
+#vector_a = [1,2,3]
+#vector_b = [2,2,2]
+#print(vector_vector_mult(vector_a, vector_b))
+
+
 def F_builder(vector:list)-> list:
     '''
     Returns F_k found by the equation F_k = I - 2(vv*/v*v). We can set an arbirtary scalar, x, equal to 2 divided by the norm of v squared. Then
