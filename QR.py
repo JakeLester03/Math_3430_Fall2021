@@ -100,7 +100,7 @@ def F_builder(vector:list)-> list:
 Args:
     a vector stored as a list.
 Returns:
-    the F_k value needed for householder decomposistion.
+    the F_k value needed for Q_k.
     '''
     
     x = 2/(LA.boolean_norm(vector))**2
