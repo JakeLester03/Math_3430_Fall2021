@@ -45,7 +45,9 @@ Returns:
     An orthonormal list of vectors sharing the same span.
     '''
     return GramSchmidt(matrix)[0]
+
 ##HW07
+
 def Identity(n: int)-> int:
     '''
     Builds an identity matrix of nxn size.
@@ -89,14 +91,14 @@ Returs:
     the reflection vector V.
     
     '''
-    e = [0 for element in range(len(vector))]
+    e = [0 for element in vector]
     e[0] = 1
-    V = LA.add_vectors(LA.scalar_vector_mult(e, sign(vector[0])*LA.boolean_norm(vector)), vector)
+    print('e:'+ str(e))
+    vnorm = LA.p_norm(vector)
+    s = sign(vector[0]) * vnorm
+    w =LA.scalar_vector_mult(e, s)
+    V = LA.add_vectors(w, vector)
     return V
-
-#vector_a= [1,2,3,4]
-#print(v_reflection(vector_a))
-
 
 def complex_conjugate(scalar:float)-> float:
     '''
@@ -106,22 +108,33 @@ Args:
 Result:
     The conjugated scalar with the sign reversed of the imaginary.
     '''
-    result = scalar.real + -scalar.imag*1j
-    return result
+    def complex_conjugate(scalar:float)-> float:
+    if scalar.imag == 0: return scalar
+    else:
+        return complex(scalar.real, - scalar.imag)
+
 #scalar=2
 #print(complex_conjugate(scalar))
 
-'''
+
 def conjugate_transpose(matrix: list) -> list:
-    
-    
-Args: 
+    '''
+   Args: 
     A matrix stored as a list.
 
 Result:
     The conjugated transpose of the matrix    
-    
-'''
+    '''
+    result_1: list = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
+    result_2: list = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
+    for index_1 in range(len(matrix[0])):
+        for index_2 in range(len(matrix[0])):
+            result_1[index_1][index_2] = complex_conjugate(matrix[index_1][index_2])
+    for index_3 in range(len(matrix[0])):
+        for index_4 in range(len(matrix)):
+            result_2[index_3][index_4] = result_1[index_4][index_3]
+    return result_2
+
 
 def vector_vector_mult(vector:list, vector_b:list)-> list:
     result: list = []
@@ -149,12 +162,23 @@ Returns:
     y = LA.scalar_matrix_mult(vector_vector_mult(vector, vector), -x) 
     z = LA.matrix_add(Identity(len(vector)), y)
     return z
-    
-  
- 
-'''
-def Q_builder(matrix: list) -> list:
 
+res = LA.p_norm(vector_a)
+print(res)
+print('F_builder:')
+
+def deep_copy(matrix: list[list]) -> list[list]:
+    result = [[0 for element in range(len(matrix_a[0]))] for i in range(len(matrix))]
+    for index_1 in range(len(matrix[0])):
+        for index_2 in range(len(matrix)):
+            result[index_1][index_2] = matrix[index_1][index_2]
+    return result
+print('deep_copy:')
+print(deep_copy(matrix_a))
+
+
+def Q_builder(matrix: list) -> list:
+'''
 #Doc String
 
 Args:
@@ -162,13 +186,26 @@ Args:
 
 Returns:
     Q_k of the form [[I_k-1, 0], [0, F_k]]
-
 '''
+    Q: list = [[0 for element in range(k, len(matrix[index]))] for index in range(k, len(matrix))]
+    for index in range(len(matrix)):
+        for element in range(len(matrix[index])):
+            if k + index < len(matrix[index]):
+                if k + element < len(matrix[index]):
+                    Q[index][element] = matrix[k + index][k + element]
+    v = v_reflection(Q[0])
+    print('v in Q_builder:'+ str(v))
+    f = F_builder(v)
+    Q_builder = Identity(len(matrix))
+    for index in range(k, len(Q_builder)):
+        for element in range(k, len(Q_builder)):
+            Q_builder[index][element] = f[index - k][element - k]
+    return Q_builder
 
 
 
 def Householder(matrix: list[list]) -> list[list]:
-    
+    '''
     Perfroms the householder decomposistion on a matrix.
 
 Args:
@@ -176,21 +213,23 @@ Args:
     
 Returns:
     an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method
+    '''
+    def Householder(matrix: list[list]) -> list:
     
     R: list = deep_copy(matrix)
     Q_list: list = []
     for index in range(len(R)):
         Q_temp: list = Q_builder(R, index)
+        print('Q_temp: '+ str(Q_temp))
         R = LA.matrix_matrix_mult(Q_temp, R)
         Q_list.append(Q_temp)
     Q: list = Q_list[-1]
     Q: list = conjugate_transpose(Q_list[0])
     for index in range(1, len(Q_list)):
-        Q = LA.matrix_matrix__mult(Q, conjugate_transpose(Q_list[index])
-return [Q, R]
-
-
-write conjugate transpose
+        Q = LA.matrix_matrix_mult(Q, conjugate_transpose(Q_list[index]))
+    return [Q, R]
+  print('Householder:')  
+  
 
 
 
