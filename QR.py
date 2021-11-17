@@ -168,7 +168,7 @@ Returns:
 
 
 def Householder(matrix: list[list]) -> list[list]:
-    '''
+    
     Perfroms the householder decomposistion on a matrix.
 
 Args:
@@ -177,21 +177,20 @@ Args:
 Returns:
     an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method
     
-    R: list = deep_copy(A)
+    R: list = deep_copy(matrix)
     Q_list: list = []
-for index in range(len(R)):
-    Q_temp: list = Q_builder(R, index)
-    A = La.matrix_mult(Q_temp, R)
-    Q_list.append(Q_temp)
-Q: list = Q_list[-1]
-Q: list = conjugate_transpose(Q_list[0])
-for index in range(len(1, len(Q_list)):
-    Q = La.matrix_mult(Q, conjugate_transpose(Q_list[index])
+    for index in range(len(R)):
+        Q_temp: list = Q_builder(R, index)
+        R = LA.matrix_matrix_mult(Q_temp, R)
+        Q_list.append(Q_temp)
+    Q: list = Q_list[-1]
+    Q: list = conjugate_transpose(Q_list[0])
+    for index in range(1, len(Q_list)):
+        Q = LA.matrix_matrix__mult(Q, conjugate_transpose(Q_list[index])
 return [Q, R]
 
-write Q builder
+
 write conjugate transpose
-write deep copy
 
 
 
