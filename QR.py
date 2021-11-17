@@ -102,7 +102,8 @@ Returs:
 
 def complex_conjugate(scalar:float)-> float:
     '''
-    Find the conjugate of a complex scalar by reversing the sign (+ or -) of the imaginary part. The real is left unaffected.
+    Find the conjugate of a complex scalar by reversing the sign (+ or -) of the imaginary part. In order to negate a 0j imaginary component, implement if...else.
+    If complex component, return only the scalar real value. Else, return the complex number consisting of scalar and imaginary.
 Args:
     A complex scalar consisting of a real part and an imaginary part.
 Result:
@@ -113,13 +114,15 @@ Result:
     else:
         return complex(scalar.real, - scalar.imag)
 
-#scalar=2
-#print(complex_conjugate(scalar))
-
 
 def conjugate_transpose(matrix: list) -> list:
     '''
-   Args: 
+    Creates the conjugate transpose of a matrix. We first create two result matricies to be copies of the input matrix of same nxn size filled
+    with 0's. We can implement a two for loops to make the rows and columns of the first result matrix to be the conjugate transpose of the matrix. In
+    a similar fashion, implement the same technique for the second result matrix to be equal to the conjugated matrix. The second resut matrix will now be the 
+    conjugate transpose of the input matrix.
+    
+Args: 
     A matrix stored as a list.
 
 Result:
@@ -137,15 +140,20 @@ Result:
 
 
 def vector_vector_mult(vector:list, vector_b:list)-> list:
+    '''
+    Used in the process of calculating F_k = I - 2(vv*/v*v), where vectors (vv*/v*v)*2 will be calculated.
+    Initialize result as an empy list. For elements in the first vector, use scalar_vector_mult to multiply the scalars of the vector by the 
+    second vector.
+
+Args: Two vectors.
+
+Returs:
+    The product of the two vectors.   
+    '''
     result: list = []
     for index in range(len(vector)):
         result.append(LA.scalar_vector_mult(vector_b, vector[index]))
     return result
-
-#vector_a = [1,2,3]
-#vector_b = [2,2,2]
-#print(vector_vector_mult(vector_a, vector_b))
-
 
 def F_builder(vector:list)-> list:
     '''
@@ -163,11 +171,21 @@ Returns:
     z = LA.matrix_add(Identity(len(vector)), y)
     return z
 
-res = LA.p_norm(vector_a)
-print(res)
-print('F_builder:')
-
 def deep_copy(matrix: list[list]) -> list[list]:
+    '''
+    Instead of creating a shallow copy as a reference point for our copies of the inputs, we can create a deep copy for our referenced
+    lists. 
+    First initialize a result matrix of the input matrix of same nxn size. Result matrix will be filled with 0's.
+    Then, the the rows and colums will weill become a copy of the desired matrix to be copied.
+    
+Args:
+    a matrix stored as a list of lists.
+    
+Returns:
+    The deep copy of the matrix.
+    
+    
+    '''
     result = [[0 for element in range(len(matrix_a[0]))] for i in range(len(matrix))]
     for index_1 in range(len(matrix[0])):
         for index_2 in range(len(matrix)):
@@ -179,7 +197,11 @@ print(deep_copy(matrix_a))
 
 def Q_builder(matrix: list) -> list:
 '''
-#Doc String
+    Used to solve Q_k such that Q_k = [[I_k-1, 0], [0, F_k]]. 
+    First initialize result of the input matrix to be filled with zero's. Q will need to take the form Q = [[I_k-1, 0], [0, F_k]], so we run a for loop
+    to initialize the innput matrix to be of the same dimensions of the matrix [[I_k-1, 0], [0, F_k]]. F_k is written, so we can set an element f equal to F_k using 
+    F_builder. Using Identity, set Q_k as Q_builder equal to the identity matrix. We will then need to add in our F_k value f into the Q matrix using for loops to put it in the appropiate
+    a_22 posistion. Return Q_k (or Q_builder).
 
 Args:
     a matrix stored as a list of lists.
