@@ -50,13 +50,13 @@ Returns:
 
 def Identity(n: int)-> int:
     '''
-    Builds an identity matrix of nxn size.
+    Builds an identity matrix of nxm size.
 
     Args:
         An integer n which denotes the size of the square identity matrix.
     
     Result:
-        An nxn Identity matrix
+        An nxm Identity matrix
     
 
     '''
@@ -116,7 +116,7 @@ Result:
 
 def conjugate_transpose(matrix: list) -> list:
     '''
-    Creates the conjugate transpose of a matrix. We first create two result matricies to be copies of the input matrix of same nxn size filled
+    Creates the conjugate transpose of a matrix. We first create two result matricies to be copies of the input matrix of same nxm size filled
     with 0's. We can implement a two for loops to make the rows and columns of the first result matrix to be the conjugate transpose of the matrix. In
     a similar fashion, implement the same technique for the second result matrix to be equal to the conjugated matrix. The second resut matrix will now be the 
     conjugate transpose of the input matrix.
