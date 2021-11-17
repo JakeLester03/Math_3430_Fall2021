@@ -93,7 +93,6 @@ Returs:
     '''
     e = [0 for element in vector]
     e[0] = 1
-    print('e:'+ str(e))
     vnorm = LA.p_norm(vector)
     s = sign(vector[0]) * vnorm
     w =LA.scalar_vector_mult(e, s)
@@ -191,8 +190,6 @@ Returns:
         for index_2 in range(len(matrix)):
             result[index_1][index_2] = matrix[index_1][index_2]
     return result
-print('deep_copy:')
-print(deep_copy(matrix_a))
 
 
 def Q_builder(matrix: list) -> list:
@@ -216,7 +213,6 @@ Returns:
                 if k + element < len(matrix[index]):
                     Q[index][element] = matrix[k + index][k + element]
     v = v_reflection(Q[0])
-    print('v in Q_builder:'+ str(v))
     f = F_builder(v)
     Q_builder = Identity(len(matrix))
     for index in range(k, len(Q_builder)):
@@ -228,13 +224,15 @@ Returns:
 
 def Householder(matrix: list[list]) -> list[list]:
     '''
-    Perfroms the householder decomposistion on a matrix.
-
+    Perfroms the householder decomposistion on a matrix. Initialize R to be the deep copy of the input matrix. An empty Q_list. We will then denote another variable, Q_temp,
+    to be equal to the Q_k of R and the indecies interating in the for loop. R will then be equal to the multiplication of Q_temp * R. Use matrix_matrix_mult to calculate R in
+    QR decomposistion. Now append the values of Q_temp to our empty Q_list, which we set to our final Q. We will start with the last indecy for finish Q. We then take the conjugate 
+    transpose of Q_list beginning with the first vector. We finish building Q by taking the multiplications of Q and the conjugate_transpose. Return Q and R
 Args:
     a matrix stored as a list of lists.
     
 Returns:
-    an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method
+    an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method.
     '''
     def Householder(matrix: list[list]) -> list:
     
@@ -242,7 +240,6 @@ Returns:
     Q_list: list = []
     for index in range(len(R)):
         Q_temp: list = Q_builder(R, index)
-        print('Q_temp: '+ str(Q_temp))
         R = LA.matrix_matrix_mult(Q_temp, R)
         Q_list.append(Q_temp)
     Q: list = Q_list[-1]
@@ -250,7 +247,7 @@ Returns:
     for index in range(1, len(Q_list)):
         Q = LA.matrix_matrix_mult(Q, conjugate_transpose(Q_list[index]))
     return [Q, R]
-  print('Householder:')  
+  
   
 
 
