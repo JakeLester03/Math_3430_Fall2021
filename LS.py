@@ -21,3 +21,17 @@ Result:
         temp *= 1/(matrix[current][current])
         result.append(temp)
     return result[::-1]
+
+'''
+def least_squares(matrix, vector):
+'''
+#Pseudo-Code
+# matrix a stored as a list
+# vector stored as a list
+#Least square:
+#Compute grahm schmidt on matrix_a to get Q and R
+# For Q: compute conjugate transpose
+    #multiply conjugate transpose of Q by vector
+    #Denote solution as Q_new (vector)
+#Implement back_sub(R, Q_new)
+#Return result
