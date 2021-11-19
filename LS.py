@@ -13,25 +13,25 @@ Result:
 
     '''
     
-    result = [vector[-1]*(1/(matrix[-1][-1]))]
-    for current in range(len(matrix)-2,-1,-1):
-        temp = vector[current]
-        for index in range(len(result)):
-            temp -= matrix[len(matrix)-1-index][current]*result[index]
-        temp *= 1/(matrix[current][current])
+    length = len(matrix)-1
+    result: list = [vector[-1]*(1/(matrix[-1][-1]))]
+    for index_1 in range(length-1,-1,-1):
+        temp = vector[index_1]
+        for index_2 in range(len(result)):
+            temp -= matrix[len(matrix)-1-index_2][index_1]*result[index_2]
+        temp *= 1/(matrix[index_1][index_1])
         result.append(temp)
     return result[::-1]
 
-'''
 def least_squares(matrix, vector):
-'''
-#Pseudo-Code
-# matrix a stored as a list
-# vector stored as a list
-#Least square:
-#Compute grahm schmidt on matrix_a to get Q and R
-# For Q: compute conjugate transpose
-    #multiply conjugate transpose of Q by vector
-    #Denote solution as Q_new (vector)
-#Implement back_sub(R, Q_new)
-#Return result
+    Q,R = QR.GramSchmidt(matrix)
+    Q_new = QR.conjugate_transpose(Q)
+    Q_newagain = LA.matrix_vector_mult(Q_new, vector)
+    #result = back_substitution(R, Q_newagain)
+    return back_substitution(R, Q_newagain)
+
+matrix_a = [[4,0,0],[5,1,0],[6,2,3]]
+vector_a = [3,3,6]
+print(least_squares(matrix_a, vector_a))
+print('should be [-1,-1,2]')
+
