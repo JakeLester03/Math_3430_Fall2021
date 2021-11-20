@@ -1,0 +1,11 @@
+Floating point numbers are a way in which numbers can be represented
+in computers. Floating points work by converting a number into it's mantissa
+and exponent part, which looks similar to scientific notation. This also
+allows for computers to represent a large variety of integers and fractions. Because 
+the decimal is essentially "floating," floating point numbers can be reprensented in a 
+wide range of ways, whereas "fixed" point numbers can only be represented in a fixed number of 
+ways. This could be an advantage when it comes to storing numbers, since the ways the numbers would be represented are fixed.
+An advantage to floating point is accurcacy, as the gaps between the numbers increases
+with magnitude, whereas with fixed point the gap is constant. Because floating point is able to
+store and represent very small and very large numbers, a downfall to this would cost the computer
+storage space.
