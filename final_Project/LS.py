@@ -42,17 +42,6 @@ def least_squares(matrix: list[list], vector: list)-> list:
     x = back_substitution(R, Q_newagain)
     return x
 
-'''matrix_a = [[4,0,0],[5,1,0],[6,2,3]]
-vector_a = [3,3,6,]
-matrix_b = [[1,0,0],[0,1,0],[2,2,1]]
-vector_b = [3,4,5]
-matrix_u = [[1,1,1],[3,2,3], [6,2,8]]
-vector_u = [3,3,1]
-print('BS: ')
-print(back_substitution(matrix_a, vector_a))
-print('LS: ')
-print(least_squares(matrix_u, vector_u))
-'''
 
 
     
