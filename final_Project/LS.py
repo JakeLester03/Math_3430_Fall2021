@@ -1,0 +1,58 @@
+import LA
+import QR
+
+def back_substitution(matrix:list[list], vector:list)->list:
+    '''
+    Performs back substitution in order to solve a linear system of equations satisfying Ax=B.
+
+    Args:
+        a matrix stored as a list or lists and a vector stored as a list.
+
+    Result:
+        vector b which satisfies Ax=B.
+
+    '''
+    length = len(matrix)-1
+    result: list = [vector[-1]*(1/(matrix[-1][-1]))]
+    for index_1 in range(length-1,-1,-1):
+        temp = vector[index_1]
+        for index_2 in range(len(result)):
+            temp -= matrix[len(matrix)-1-index_2][index_1]*result[index_2]
+        temp *= 1/(matrix[index_1][index_1])
+        result.append(temp)
+    return result[::-1]
+
+
+def least_squares(matrix: list[list], vector: list)-> list:
+    '''
+    Solves a system of equations following the form A*Ax = A*B (* is the transpose). It first takes a matrix and return Q and R
+    via Gram-Schmidt decomposistion. The transpose is then taken on Q, which can be denoted by Q_new. Q_new will then be multiplied
+    by the input vector using matrix_vector_mult, and the result can be denoted by Q_newagain (Q has now been transformed two times). Finally,
+    we can perform back substitution on Q_newagain and R to get the solution vector x.
+
+    Args:
+        a matrix stored as a list of lists and a vector.
+    
+    Results:
+        the least squares soltion.
+    '''
+    Q,R = QR.GramSchmidt(matrix)
+    Q_new = QR.conjugate_transpose(Q)
+    Q_newagain = LA.matrix_vector_mult(Q_new, vector)
+    x = back_substitution(R, Q_newagain)
+    return x
+
+'''matrix_a = [[4,0,0],[5,1,0],[6,2,3]]
+vector_a = [3,3,6,]
+matrix_b = [[1,0,0],[0,1,0],[2,2,1]]
+vector_b = [3,4,5]
+matrix_u = [[1,1,1],[3,2,3], [6,2,8]]
+vector_u = [3,3,1]
+print('BS: ')
+print(back_substitution(matrix_a, vector_a))
+print('LS: ')
+print(least_squares(matrix_u, vector_u))
+'''
+
+
+    
