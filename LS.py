@@ -5,12 +5,11 @@ def back_substitution(matrix:list[list], vector:list)->list:
     '''
     Performs back substitution in order to solve a linear system of equations.
 
-Args:
-    a matrix stored as a list or lists and a vector stored as a list.
+    Args:
+        a matrix stored as a list or lists and a vector stored as a list.
 
-Result:
-    vector b which satisfies Ax=B.
-
+    Result:
+        vector b which satisfies Ax=B.
     '''
     length = len(matrix)-1
     result: list = [vector[-1]*(1/(matrix[-1][-1]))]
