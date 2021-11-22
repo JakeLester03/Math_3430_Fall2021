@@ -114,28 +114,23 @@ Result:
         return complex(scalar.real, - scalar.imag)
 
 
-def conjugate_transpose(matrix: list) -> list:
+def conjugate_transpose(matrix:list[list])-> list[list]:
     '''
     Creates the conjugate transpose of a matrix. We first create two result matricies to be copies of the input matrix of same nxm size filled
     with 0's. We can implement a two for loops to make the rows and columns of the first result matrix to be the conjugate transpose of the matrix. In
     a similar fashion, implement the same technique for the second result matrix to be equal to the conjugated matrix. The second resut matrix will now be the 
     conjugate transpose of the input matrix.
     
-Args: 
-    A matrix stored as a list.
-
-Result:
-    The conjugated transpose of the matrix    
+    Args: 
+        A matrix stored as a list.
+    Result:
+        The conjugated transpose of the matrix    
     '''
-    result_1: list = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
-    result_2: list = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
+    result_1:list = [[0 for element in range(len(matrix))] for i in range(len(matrix[0]))]
     for index_1 in range(len(matrix[0])):
-        for index_2 in range(len(matrix[0])):
-            result_1[index_1][index_2] = complex_conjugate(matrix[index_1][index_2])
-    for index_3 in range(len(matrix[0])):
-        for index_4 in range(len(matrix)):
-            result_2[index_3][index_4] = result_1[index_4][index_3]
-    return result_2
+        for index_2 in range(len(matrix)):
+            result_1[index_1][index_2] = complex_conjugate(matrix[index_2][index_1])
+    return result_1
 
 
 def vector_vector_mult(vector:list, vector_b:list)-> list:
@@ -177,16 +172,14 @@ def deep_copy(matrix: list[list]) -> list[list]:
     First initialize a result matrix of the input matrix of same nxn size. Result matrix will be filled with 0's.
     Then, the the rows and colums will weill become a copy of the desired matrix to be copied.
     
-Args:
-    a matrix stored as a list of lists.
+    Args:
+        a matrix stored as a list of lists.
     
-Returns:
-    The deep copy of the matrix.
-    
-    
+    Returns:
+        The deep copy of the matrix.
     '''
-    result = [[0 for element in range(len(matrix_a[0]))] for i in range(len(matrix))]
-    for index_1 in range(len(matrix[0])):
+    result = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
+    for index_1 in range(len(matrix)):
         for index_2 in range(len(matrix)):
             result[index_1][index_2] = matrix[index_1][index_2]
     return result
