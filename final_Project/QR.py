@@ -9,8 +9,7 @@ def GramSchmidt(matrix: list[list]) -> list[list]:
     p-norm of the columns of will be stored in R, and this will be done by a for loop. At the same time, we will normalize V and append to Q using 
     scalar_vector_mult. While this for loop is running, we will also run another for loop inside of it. Then we will find the dot product of Q and 
     V for the corresponding element in R. Finally, V is updated with R, and then we subtract off the product of R and Q using add vectors and scalar_vector_mult.
-
-
+    
     Args:
         A Matrix which will satisfy the equation A = Q * R
 
@@ -32,43 +31,6 @@ def GramSchmidt(matrix: list[list]) -> list[list]:
             V[inner_index] = LA.add_vectors(V[inner_index], LA.scalar_vector_mult(Q[outer_index], -R[inner_index][outer_index])) 
     return [Q, R]
     
-
-'''
-def GramSchmidt_unstable(matrix: list) -> list:
-
-The unstable version of Gram-schmidt factorization. First we create an empty list for Q, V, and R. We want to build R as a square matrix 
-so that we can return it along with Q. Let V be a matrix  the same size as A and essentially a copy. We will start a for loop to indexing 
-over the matrix, then append that onto V. Then we will star another for loop to iterate over the columns so that R can be overwritten; this
-will allow us to build an upper triangular matrix. Then we can multiply the rows of Q and columns of V using inner_produt to over write R.
-V is overwritten with R, and then we subtract off the product of R and Q using add vectors and scalar_vector_mult. We will then take the p-norm
-of the columns to be stored in R. Finally, we will normalize V and multiply by R using scalar_vector_mult; we append this to Q to get the 
-orthogonal matrix. 
-
-Args:
-    An Matrix which will satisfy the equation A = Q * R
-
-Result:
-    An orthogonal matrix Q and the upper triangular matrix R both stored in a list.
-    
-
-    Q: list = []
-    V: list = []
-    R: list = []
-    for element in matrix:
-        R.append([0 for element in range(len(matrix))])
-    for outer_index in range(len(matrix)):
-        V.append(matrix[outer_index])
-        for inner_index in range(0, outer_index):
-            R[outer_index][inner_index] = LA.inner_product(Q[inner_index], V[outer_index])
-            V[outer_index] = LA.add_vectors(V[outer_index], LA.scalar_vector_mult(-R[outer_index][inner_index], Q[inner_index]))
-            #V[outer_index] = LA.add_vectors(V[outer_index], LA.scalar_vector_mult( Q[inner_index, -R[outer_index][inner_index],]))
-        R[outer_index][outer_index] = LA.p_norm(V[outer_index])
-        Q.append(LA.scalar_vector_mult(1/R[outer_index][outer_index], V[outer_index]))
-       
-    return [Q, R]
-'''
-
-
 def orthonormal_vectors(matrix: list[list]) -> list[list]:
     '''
     Takes an input list of vectors and returns the orthonormal list of vectors sharing the same span. In our Stable Gram-Schmidt
@@ -130,10 +92,10 @@ def complex_conjugate(scalar:float)-> float:
     
 def conjugate_transpose(matrix:list[list])-> list[list]:
     '''
-    Creates the conjugate transpose of a matrix. We first create two result matricies to be copies of the input matrix of same nxm size filled
-    with 0's. We can implement a two for loops to make the rows and columns of the first result matrix to be the conjugate transpose of the matrix. In
-    a similar fashion, implement the same technique for the second result matrix to be equal to the conjugated matrix. The second resut matrix will now be the 
-    conjugate transpose of the input matrix.
+    Creates the conjugate transpose of a matrix. We first create two result matrix to be a copy of the input matrix of same nxm size filled
+    with 0's for the appropiate range. We can implement a for loop to make the rows and columns of the first result matrix to be the equal to the input matrix. And at
+    the same time, we will take the complex_conjugate of the elements, so that we can execute the conplex conjugate and the transpose at the same time. THe result will
+    be th conjugate_transpose.
     
     Args: 
         A matrix stored as a list.
