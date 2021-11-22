@@ -211,6 +211,7 @@ def deep_copy(matrix: list[list]) -> list[list]:
     
     Args:
         a matrix stored as a list of lists.
+        an integer k representing the indexing iterations.
     
     Returns:
         The deep copy of the matrix.
