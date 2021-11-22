@@ -94,8 +94,8 @@ def conjugate_transpose(matrix:list[list])-> list[list]:
     '''
     Creates the conjugate transpose of a matrix. We first create two result matrix to be a copy of the input matrix of same nxm size filled
     with 0's for the appropiate range. We can implement a for loop to make the rows and columns of the first result matrix to be the equal to the input matrix. And at
-    the same time, we will take the complex_conjugate of the elements, so that we can execute the conplex conjugate and the transpose at the same time. THe result will
-    be th conjugate_transpose.
+    the same time, we will take the complex_conjugate of the elements, so that we can execute the complex conjugate and the transpose at the same time. The result will
+    be the conjugate_transpose.
     
     Args: 
         A matrix stored as a list.
