@@ -202,6 +202,7 @@ def Q_builder(matrix: list) -> list:
 
 Args:
     a matrix stored as a list of lists.
+    an integer k representing the indexing iterations
 
 Returns:
     Q_k of the form [[I_k-1, 0], [0, F_k]]
