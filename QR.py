@@ -8,8 +8,7 @@ def GramSchmidt(matrix: list) -> list:
     p-norm of the columns of will be stored in R, and this will be done by a for loop. At the same time, we will normalize V and append to Q using 
     scalar_vector_mult. While this for loop is running, we will also run another for loop inside of it. Then we will find the dot product of Q and 
     V for the corresponding element in R. Finally, V is updated with R, and then we subtract off the product of R and Q using add vectors and scalar_vector_mult.
-
-
+    
     Args:
         An Matrix which will satisfy the equation A = Q * R
     Result:
