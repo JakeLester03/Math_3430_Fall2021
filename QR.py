@@ -10,12 +10,10 @@ def GramSchmidt(matrix: list) -> list:
     V for the corresponding element in R. Finally, V is updated with R, and then we subtract off the product of R and Q using add vectors and scalar_vector_mult.
 
 
-Args:
-    An Matrix which will satisfy the equation A = Q * R
-
-Result:
-    An orthogonal matrix Q and the upper triangular matrix R both stored in a list.
-    
+    Args:
+        An Matrix which will satisfy the equation A = Q * R
+    Result:
+        An orthogonal matrix Q and the upper triangular matrix R both stored in a list.
     '''
     Q: list = []
     V: list = []
@@ -38,15 +36,12 @@ def orthonormal_vectors(matrix: list) -> list:
     algorithm, we return two matricies. An orthogonal Q and Upper triangular R. Likewise, Q is also foud to be orthonormal. Therefore,
     we can use the Gram-Schmidt algortihm and return the first element Q.
 
-Args:
-    A list of vectors (i.e matrix).
-
-Returns:
-    An orthonormal list of vectors sharing the same span.
+    Args:
+        A list of vectors (i.e matrix).
+    Returns:
+        An orthonormal list of vectors sharing the same span.
     '''
     return GramSchmidt(matrix)[0]
-
-##HW07
 
 def Identity(n: int)-> int:
     '''
@@ -65,15 +60,13 @@ def Identity(n: int)-> int:
         result[index][index] = 1
     return result
 
-#print(Identity(1))
-
 def sign(n:float)-> float:
     '''
     Determines whether a number is positive or negative. If less than 0, returns -1. If greater than 0, returns 1.
-Args:
-    an integer n
-Returns:
-    -1 or 1.
+    Args:
+        an integer n
+    Returns:
+        -1 or 1.
     '''
     if n < 0:
         return -1
@@ -84,12 +77,10 @@ def v_reflection(vector: list)-> list:
     '''
     Find the reflection V where V satisfies the equation V = sign(x)||x||e + x
     
-Args:
-    a vector stored as a list.
-    
-Returs:
-    the reflection vector V.
-    
+    Args:
+        a vector stored as a list.
+    Returns:
+        the reflection vector V.
     '''
     e = [0 for element in vector]
     e[0] = 1
@@ -103,16 +94,16 @@ def complex_conjugate(scalar:float)-> float:
     '''
     Find the conjugate of a complex scalar by reversing the sign (+ or -) of the imaginary part. In order to negate a 0j imaginary component, implement if...else.
     If complex component, return only the scalar real value. Else, return the complex number consisting of scalar and imaginary.
-Args:
-    A complex scalar consisting of a real part and an imaginary part.
-Result:
-    The conjugated scalar with the sign reversed of the imaginary.
+    
+    Args:
+        A complex scalar consisting of a real part and an imaginary part.
+    Result:
+        The conjugated scalar with the sign reversed of the imaginary.
     '''
     def complex_conjugate(scalar:float)-> float:
     if scalar.imag == 0: return scalar
     else:
         return complex(scalar.real, - scalar.imag)
-
 
 def conjugate_transpose(matrix:list[list])-> list[list]:
     '''
@@ -132,17 +123,16 @@ def conjugate_transpose(matrix:list[list])-> list[list]:
             result_1[index_1][index_2] = complex_conjugate(matrix[index_2][index_1])
     return result_1
 
-
 def vector_vector_mult(vector:list, vector_b:list)-> list:
     '''
     Used in the process of calculating F_k = I - 2(vv*/v*v), where vectors (vv*/v*v)*2 will be calculated.
     Initialize result as an empy list. For elements in the first vector, use scalar_vector_mult to multiply the scalars of the vector by the 
     second vector.
 
-Args: Two vectors.
-
-Returs:
-    The product of the two vectors.   
+    Args: 
+        Two vectors.
+    Returns:
+        The product of the two vectors.   
     '''
     result: list = []
     for index in range(len(vector)):
@@ -154,11 +144,10 @@ def F_builder(vector:list)-> list:
     Returns F_k found by the equation F_k = I - 2(vv*/v*v). We can set an arbirtary scalar, x, equal to 2 divided by the norm of v squared. Then
     multiply the vectors, using vector_vector_mult and multiply by -x using scalar_vector_mult and set equal to y so y will now be negative. Finally, 
     using matrix_add, subtract y (add minus y) from the identity matrix by using matrix_add.
-Args:
-    a vector stored as a list of lists
-
-Returns:
-    the F_k value needed for Q_k.
+    Args:
+        a vector stored as a list of lists
+    Returns:
+        the F_k value needed for Q_k.
     '''
     x = 2/(LA.boolean_norm(vector))**2
     y = LA.scalar_matrix_mult(vector_vector_mult(vector, vector), -x) 
@@ -184,22 +173,20 @@ def deep_copy(matrix: list[list]) -> list[list]:
             result[index_1][index_2] = matrix[index_1][index_2]
     return result
 
-
 def Q_builder(matrix: list) -> list:
-'''
+    '''
     Used to solve Q_k such that Q_k = [[I_k-1, 0], [0, F_k]]. 
     First initialize result of the input matrix to be filled with zero's. Q will need to take the form Q = [[I_k-1, 0], [0, F_k]], so we run a for loop
     to initialize the innput matrix to be of the same dimensions of the matrix [[I_k-1, 0], [0, F_k]]. F_k is written, so we can set an element f equal to F_k using 
     F_builder. Using Identity, set Q_k as Q_builder equal to the identity matrix. We will then need to add in our F_k value f into the Q matrix using for loops to put it in the appropiate
     a_22 posistion. Return Q_k (or Q_builder).
 
-Args:
-    a matrix stored as a list of lists.
-    an integer k representing the indexing iterations
-
-Returns:
-    Q_k of the form [[I_k-1, 0], [0, F_k]]
-'''
+    Args:
+        a matrix stored as a list of lists.
+        an integer k representing the indexing iterations
+    Returns:
+        Q_k of the form [[I_k-1, 0], [0, F_k]]
+    '''
     Q: list = [[0 for element in range(k, len(matrix[index]))] for index in range(k, len(matrix))]
     for index in range(len(matrix)):
         for element in range(len(matrix[index])):
@@ -214,19 +201,16 @@ Returns:
             Q_builder[index][element] = f[index - k][element - k]
     return Q_builder
 
-
-
 def Householder(matrix: list[list]) -> list[list]:
     '''
     Perfroms the householder decomposistion on a matrix. Initialize R to be the deep copy of the input matrix. An empty Q_list. We will then denote another variable, Q_temp,
     to be equal to the Q_k of R and the indecies interating in the for loop. R will then be equal to the multiplication of Q_temp * R. Use matrix_matrix_mult to calculate R in
     QR decomposistion. Now append the values of Q_temp to our empty Q_list, which we set to our final Q. We will start with the last indecy for finish Q. We then take the conjugate 
     transpose of Q_list beginning with the first vector. We finish building Q by taking the multiplications of Q and the conjugate_transpose. Return Q and R
-Args:
-    a matrix stored as a list of lists.
-    
-Returns:
-    an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method.
+    Args:
+        a matrix stored as a list of lists.
+    Returns:
+        an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method.
     '''
     def Householder(matrix: list[list]) -> list:
     
