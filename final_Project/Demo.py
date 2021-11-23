@@ -204,4 +204,6 @@ print('''For example, if a matrix = [[1,1,1],[3,2,3], [6,2,8]] and a vector = [3
 matrix_bs = [[1,1,1],[3,2,3], [6,2,8]]
 vector_bs = [3,3,1]
 print(LS.least_squares(matrix_bs, vector_bs))
+print(' ')
 
+print('''This concludes Demo.py. Goodbye!''')
