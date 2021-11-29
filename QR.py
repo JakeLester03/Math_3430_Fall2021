@@ -210,9 +210,7 @@ def Householder(matrix: list[list]) -> list[list]:
         a matrix stored as a list of lists.
     Returns:
         an orthogonal matrix Q and the upper triangular matrix R via the Householder decomposistion method.
-    '''
-    def Householder(matrix: list[list]) -> list:
-    
+    '''   
     R: list = deep_copy(matrix)
     Q_list: list = []
     for index in range(len(R)):
