@@ -172,7 +172,7 @@ def deep_copy(matrix: list[list]) -> list[list]:
             result[index_1][index_2] = matrix[index_1][index_2]
     return result
 
-def Q_builder(matrix: list) -> list:
+def Q_builder(matrix: list[list], k: float)-> list[list]:
     '''
     Used to solve Q_k such that Q_k = [[I_k-1, 0], [0, F_k]]. 
     First initialize result of the input matrix to be filled with zero's. Q will need to take the form Q = [[I_k-1, 0], [0, F_k]], so we run a for loop
