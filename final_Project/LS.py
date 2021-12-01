@@ -36,10 +36,12 @@ def least_squares(matrix: list[list], vector: list)-> list:
     Results:
         the least squares soltion.
     '''
-    Q,R = QR.GramSchmidt(matrix)
-    Q_new = QR.conjugate_transpose(Q)
-    Q_newagain = LA.matrix_vector_mult(Q_new, vector)
-    x = back_substitution(R, Q_newagain)
+    QR_decomp:list = QR.Householder(matrix)
+    Q:list = QR_decomp[0]
+    R:list = QR_decomp[1]
+    Q_new:list = QR.conjugate_transpose(Q)
+    Q_newagain:list = LA.matrix_vector_mult(Q_new, vector)
+    x:list = back_substitution(R, Q_newagain)
     return x
 
 
