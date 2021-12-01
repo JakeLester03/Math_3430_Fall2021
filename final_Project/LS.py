@@ -43,9 +43,3 @@ def least_squares(matrix: list[list], vector: list)-> list:
     Q_newagain:list = LA.matrix_vector_mult(Q_new, vector)
     x:list = back_substitution(R, Q_newagain)
     return x
-
-
-
-
-
-    
