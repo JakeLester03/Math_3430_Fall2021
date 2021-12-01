@@ -57,7 +57,7 @@ def Identity(n: int)-> int:
         An nxn Identity matrix
     
     '''
-    result:list =[[0 for element in range(n)] for index in range(n)]
+    result:list = [[0 for element in range(n)] for index in range(n)]
     for index in range(n):
         result[index][index] = 1
     return result
@@ -122,10 +122,10 @@ def v_reflection(vector: list[float])-> list[float]:
     '''
     e: list = [0 for element in vector]
     e[0] = 1
-    vnorm = LA.p_norm(vector)
-    s = sign(vector[0]) * vnorm
-    w =LA.scalar_vector_mult(e, s)
-    V = LA.add_vectors(w, vector)
+    vnorm:list = LA.p_norm(vector)
+    s:list = sign(vector[0]) * vnorm
+    w:list =LA.scalar_vector_mult(e, s)
+    V:list = LA.add_vectors(w, vector)
     return V
 
 def vector_vector_mult(vector:list[float], vector_b:list[float])-> list[list]:
@@ -156,9 +156,9 @@ def F_builder(vector:list[float])-> list[list]:
     Returns:
         the F_k value needed for Q_k.
     '''
-    x = 2/LA.p_norm(vector)**2
-    y = LA.scalar_matrix_mult(vector_vector_mult(vector, vector), -x) 
-    z = LA.matrix_add(Identity(len(vector)), y)
+    x:list = 2/LA.p_norm(vector)**2
+    y:list = LA.scalar_matrix_mult(vector_vector_mult(vector, vector), -x) 
+    z:list = LA.matrix_add(Identity(len(vector)), y)
     return z
 
 def deep_copy(matrix: list[list]) -> list[list]:
@@ -174,7 +174,7 @@ def deep_copy(matrix: list[list]) -> list[list]:
     Returns:
         The deep copy of the matrix.
     '''
-    result = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
+    result:list = [[0 for element in range(len(matrix[0]))] for i in range(len(matrix))]
     for index_1 in range(len(matrix)):
         for index_2 in range(len(matrix)):
             result[index_1][index_2] = matrix[index_1][index_2]
@@ -200,8 +200,8 @@ def Q_builder(matrix: list[list], k)-> list[list]:
             if k + index < len(matrix[index]):
                 if k + element < len(matrix[index]):
                     Q[index][element] = matrix[k + index][k + element]
-    v = v_reflection(Q[0])
-    f = F_builder(v)
+    v:list = v_reflection(Q[0])
+    f:list = F_builder(v)
     Q_builder = Identity(len(matrix))
     for index in range(k, len(Q_builder)):
         for element in range(k, len(Q_builder)):
