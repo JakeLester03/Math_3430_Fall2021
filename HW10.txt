@@ -6,15 +6,15 @@ so that given the oppourtnity I would be able to code a wide variety of projects
 - Second, I would like to work on other programming languages. I think that having a variety of other programming
 languages under my belt would be useful for various projects and future jobs.
 
-- A third option would be to work on a translator application for ancient languages. My second degree focus on 
+- A third option would be to work on a translator application for ancient languages. My second degree focuses on 
 ancient languages, however it is nearly impossible to translate these with any sort of modern application. Most 
 know that Google Translate is fine for translating basic phrases from one modern language into another, but realize 
 that something is lost as sentences and texts get longer and more complex. However, there are not any translator 
 applications for ancient languages such as Greek or Latin. Well, there is a Google Translate for Latin, but it is 
-actually very bad, almost to the point of it being nonexistant. But its a starts, and I suppose all applications start
+actually very bad, almost to the point of it being nonexistant. But its a start, and I suppose all applications start
 somewhere. I would like to see improvements of this in the future, and possibly an iteration of this for other ancient dead
 langauges. The closest application I can think of for Ancient Greek is a website called Logeion, which is essentailly just an
 online dictionary, which was created out of the University of Chicago. Something that is interesting is that I belive it was written
-in python, however it couldve been another langauge. But nevertheless, I think it is in interesting project that needed the 
+in python, however it could've been another langauge. But nevertheless, I think it is in interesting project that needed the 
 consultation of both Classical scholars and computer scientists. To embark on a project like this, or perhaps even expanding it
-into a translation would both be an unprecedented and filling task.
+into a translation would both be an unprecedented and fufilling task.
