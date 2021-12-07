@@ -12,7 +12,7 @@ def back_substitution(matrix:list[list], vector:list)->list:
         vector b which satisfies Ax=B.
 
     '''
-    length = len(matrix)-1
+    length:int = len(matrix)-1
     result: list = [vector[-1]*(1/(matrix[-1][-1]))]
     for index_1 in range(length-1,-1,-1):
         temp = vector[index_1]
